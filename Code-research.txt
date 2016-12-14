@@ -1,0 +1,140 @@
+public class Research {
+	public static void main(String args[])
+ {
+	int n=10000;
+	
+	for(int count=2;count<=n;count++){
+	if(count%2==0)
+	 even(count);
+	else
+	 odd(count);
+	}
+}/*End main */
+	
+public static boolean even(int n){	
+int primecheck=3;
+boolean correct=false;
+if(Is_Fibo(n-2))
+{
+	System.out.print(2);
+	System.out.print(" ");
+	System.out.println(n-2);
+	correct=true;
+}
+else
+{	
+  for(primecheck=3;primecheck<=n-1;primecheck+=2)
+  {
+	 if(Is_Prime(primecheck))
+	 {
+		 if(Is_Fibo(n-primecheck))
+		 {
+			correct=true;
+			break;
+		 }/*End small if*/
+	  else {
+		correct=false;
+		continue;
+	  }
+	 }/*End big if */
+	 else
+	  correct=false;
+	 continue;
+  }/*End for */
+  if(correct)
+  {
+	System.out.print(primecheck+" ");
+	System.out.println(n-primecheck);
+  }
+  else
+	System.out.println("Fail for "+n);
+  }/*End else */
+ return correct;
+}/* End even */	
+
+public static boolean odd(int n){
+	boolean correct=false;
+	int fibocheck=4;
+	
+  if(Is_Fibo(n-2)){
+	  System.out.print(2);
+	  System.out.print(" ");
+	  System.out.println(n-2);
+	  correct=true;
+  }
+  else {	
+	for(fibocheck=2;fibocheck<=n-1;fibocheck+=2)
+   {
+	 if(Is_Fibo(fibocheck)){
+		 if(Is_Prime(n-fibocheck))
+		 {
+			correct=true;
+			break;
+		 }
+		correct=false;
+		continue;
+	 }
+	 correct=false;
+	 continue;
+   }/*End for */
+   if(correct)
+	{
+	  System.out.print(n-fibocheck);  
+	  System.out.print(" ");
+	  System.out.println(fibocheck);
+	  }
+	else
+	 System.out.println("Fail for "+n);  
+  } 	
+   return correct;
+}
+	
+public static boolean Is_Prime(int num)
+{
+	int temp;
+	boolean isPrime=true;
+	
+	for(int i=2;i<=num/2;i++)
+	{
+           temp=num%i;
+	   if(temp==0)
+	   {
+	      isPrime=false;
+	      break;
+	   }
+	}
+	//If isPrime is true then the number is prime else not
+	/*if(isPrime)
+	   System.out.println(num + " is Prime Number");
+	else
+	   System.out.println(num + " is not Prime Number"); */
+	return isPrime; 
+  }/*End Is_Prime*/
+
+public static boolean Is_Fibo(int num)
+{
+	int firstTerm = 0;
+    int secondTerm = 1;
+    int thirdTerm = 0;
+    boolean isFibo=true;
+     
+    while (thirdTerm < num)
+    {
+        thirdTerm = firstTerm + secondTerm;
+        firstTerm = secondTerm;
+        secondTerm = thirdTerm;
+    }
+     
+    if(thirdTerm == num)
+    {
+        //System.out.println("Number belongs to Fibonacci series");
+        isFibo=true;
+    }
+    else
+    {
+        //System.out.println("Number doesn't belongs to Fibonacci series");
+        isFibo=false;
+    }
+   return isFibo; 
+  }/* End Is_Fibo */
+}/*End class*/

@@ -1,0 +1,50 @@
+#include <iostream>
+#include <math.h> 
+using namespace std;
+bool primecheck (int number)
+{
+    if (number == 1) return false;
+    if (number == 2) return true;
+    if (number%2==0) return false;
+    int m = sqrt(number);
+    int j = 3;
+    while (j <= m)
+    {
+        if (number%j == 0) return false;
+        j = j + 2;
+    }
+    return true;
+}
+int fibprime (int j)
+{
+    if (primecheck(j)==false)
+    {
+        unsigned long long int fib1 = 1, fib2 = 1, stor;
+        while(true)
+        {
+            if (j - fib2 > 0) if (primecheck(j - fib2) == true)
+            {
+                cout<<j-fib2<<" "<<fib2<<" "<<j<<endl;
+                break;
+            } 
+            if (primecheck(j + fib2) == true)
+            {
+                cout<<j+fib2<<" "<<fib2<<" "<<j<<" Difference"<<endl;
+                break;
+            } 
+            if (fib2 > 10000000000000000)
+            {
+                cout<<j<<endl;
+                system("pause");
+                break;
+            }
+            stor = fib2;
+            fib2 = fib1 + fib2;
+            fib1 = stor;
+        }                
+    }
+}
+int main ()
+{
+    for (unsigned long int j = 1; j <= 10000; j++) fibprime(j);
+}

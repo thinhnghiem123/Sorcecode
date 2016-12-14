@@ -1,0 +1,88 @@
+import java.util.Scanner;
+
+public class Research1 {
+	public static void main(String args[])
+ {
+	double n;
+	double count=2;
+	boolean correct=false;
+	Scanner scanner = new Scanner(System.in);
+	System.out.println("Enter the value of n:");
+	//The entered value is stored in the var n
+	n = scanner.nextInt();
+   if(Is_Prime(n+count))
+   {
+	System.out.print(n+count);
+	System.out.print(" ");;
+	System.out.println(2);
+   }/*End if */
+   else
+  {	   
+	while(!correct)
+	{
+	 if(Is_Fibo(count))
+	 {
+	   if(Is_Prime(n+count))
+	   {
+		 System.out.print(n+count);
+		 System.out.print(" ");
+		 System.out.println(count);
+		 correct=true;
+		 break;
+	   }
+	 }
+	  count++;
+	  continue;
+	}/*End while */
+  }/*End else */	
+}/*End main */
+
+public static boolean Is_Prime(double num)
+{
+	double temp;
+	boolean isPrime=true;
+	
+	for(int i=2;i<=num/2;i++)
+	{
+           temp=num%i;
+	   if(temp==0)
+	   {
+	      isPrime=false;
+	      break;
+	   }
+	}
+	//If isPrime is true then the number is prime else not
+	/*if(isPrime)
+	   System.out.println(num + " is Prime Number");
+	else
+	   System.out.println(num + " is not Prime Number"); */
+	return isPrime; 
+  }/*End Is_Prime*/
+
+public static boolean Is_Fibo(double num)
+{
+	int firstTerm = 0;
+    int secondTerm = 1;
+    int thirdTerm = 0;
+    boolean isFibo=true;
+     
+    while (thirdTerm < num)
+    {
+        thirdTerm = firstTerm + secondTerm;
+        firstTerm = secondTerm;
+        secondTerm = thirdTerm;
+    }
+     
+    if(thirdTerm == num)
+    {
+        //System.out.println("Number belongs to Fibonacci series");
+        isFibo=true;
+    }
+    else
+    {
+        //System.out.println("Number doesn't belongs to Fibonacci series");
+        isFibo=false;
+    }
+   return isFibo; 
+  }/* End Is_Fibo */
+}/*End class */

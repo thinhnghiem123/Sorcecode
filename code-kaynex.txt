@@ -1,0 +1,127 @@
+The way it is currently set up, it will go through the first 10,000,000 integers, and find what fibonacci number is required to add or subtract for it to be a prime.
+If that Fibonacci number is greater than 14930352, it will read out the integer and fibonacci number (It does this a handful of times near 10,000,000). 
+If it cannot find a fibonacci number (under 10000000000000000), the program will halt and read out the integer. The program never stops. 
+As you can see, I've used unsigned long long variables to ensure no overflows. It completes this in about a minute on my system
+
+https://codeshare.io/aJgprG
+
+#include <iostream>
+#include <math.h> 
+using namespace std;
+bool primecheck (int number)
+{
+    if (number == 1) return false;
+    if (number == 2) return true;
+    if (number%2==0) return false;
+    int m = sqrt(number);
+    int j = 3;
+    while (j <= m)
+    {
+        if (number%j == 0) return false;
+        j = j + 2;
+    }
+    return true;
+}
+int fibprime (int j)
+{
+    if (primecheck(j)==false)
+    {
+        unsigned long long int fib1 = 1, fib2 = 1, stor;
+        while(true)
+        {
+            if (j - fib2 > 0) if (primecheck(j - fib2) == true)
+            {
+                if (fib2>14930352) cout<<j<<" "<<fib2<<endl;
+                break;
+            } 
+            if (primecheck(j + fib2) == true)
+            {
+                if (fib2>14930352) cout<<j<<" "<<fib2<<endl;
+                break;
+            } 
+            if (fib2 > 10000000000000000)
+            {
+                cout<<j<<endl;
+                system("pause");
+                break;
+            }
+            stor = fib2;
+            fib2 = fib1 + fib2;
+            fib1 = stor;
+        }                
+    }
+}
+int main ()
+{
+    for (unsigned long int j = 1; j <= 10000000; j++) fibprime(j);
+}
+==========================================================================
+public class Research2 {
+	public static void main(String args[])
+ {
+   for (int j=1; j<=10000000; j++)
+   fibprime(j);   
+ }/* End main */
+ 
+   bool primecheck (int number)
+ {
+    if (number == 1) return false;
+    if (number == 2) return true;
+    if (number%2==0) return false;
+    int m = sqrt(number);
+    int j = 3;
+    while (j <= m)
+    {
+        if (number%j == 0) return false;
+        j = j + 2;
+    }
+    return true;
+ }/* End primecheck */
+ 
+   int fibprime (int j)
+   {
+     if (primecheck(j)==false)
+     {
+        biginteger fib1 = 1, fib2 = 1, stor;
+        while(true)
+        {
+            if (j - fib2 > 0)
+			{
+			 if (primecheck(j - fib2) == true)
+             {
+                if (fib2>14930352) 
+			   {
+			    System.out.print((j - fib2)+" ");
+				System.out.print(fib2+" ");
+				System.out.print(j+" ");
+				System.out.println("difference");
+                break;
+			   }
+             } 
+             if (primecheck(j + fib2) == true)
+             {
+                if (fib2>14930352)
+			   { 	
+				System.out.print((j + fib2)+" ");
+				System.out.print(fib2+" ");
+				System.out.print(j+" ");
+				System.out.println("Sum");
+                break;
+			   }  	
+             } 
+            if (fib2 > 10000000000000000)
+             {
+                cout<<j<<endl;
+                system("pause");
+                break;
+             }
+			}
+            stor = fib2;
+            fib2 = fib1 + fib2;
+            fib1 = stor;
+        }/* End while */                
+     }
+    }/* End fibprime */
+ }/* End class */ 
+ 
+ 1000,000,000
